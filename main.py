@@ -73,9 +73,10 @@ class MainHandler(webapp2.RequestHandler):
         email_check2 = email.find(email_dot)
         email_check3 = email.find(zero)
 
-        #if nothing entered
+        #if nothing entered all fields flagged
         if (name == nil and password == nil and email == nil or name == nil and password == nil):
             self.write_form(nil, nil, nil, nil, nil, "Login information required.")
+        #if username field is blank 
         if (name == nil and password != nil and email == nil or name ==nil and password != nil and email != nil):
             self.write_form("Username required", nil, nil, nil, email, nil)
         #if space in user name
