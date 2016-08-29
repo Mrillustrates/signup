@@ -62,8 +62,6 @@ class MainHandler(webapp2.RequestHandler):
         vpass = self.request.get('vpword')
         email = self.request.get('mail')
         s_name = name.split()
-        big_alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-        small_alpha = "abcdefghijklmnopqrstuvwxyz"  # reference var for small abcs
         zero = ' '
         nil = ''
         e_split = email.split()
@@ -76,7 +74,7 @@ class MainHandler(webapp2.RequestHandler):
         #if nothing entered all fields flagged
         if (name == nil and password == nil and email == nil or name == nil and password == nil):
             self.write_form(nil, nil, nil, nil, nil, "Login information required.")
-        #if username field is blank 
+        #if username field is blank
         if (name == nil and password != nil and email == nil or name ==nil and password != nil and email != nil):
             self.write_form("Username required", nil, nil, nil, email, nil)
         #if space in user name
@@ -85,10 +83,12 @@ class MainHandler(webapp2.RequestHandler):
         #if invalid password
         if(name != nil and password != nil and len(password) < 1 and password != vpass or name != nil and email != nil and password != nil and password != vpass and email_check > 0 and email_check2 > 0 and email_check3 < 0):
             self.write_form(nil, nil, "Invalid password", name, email, nil)
+
+        #if password required
         if(name != nil and (len(s_name) < 1) and password == nil):
             self.write_form(nil,nil, "Password Required", name, email, nil)
 
-
+        #if bad email given
         if(email != nil and email_check < 1 and email_check2 < 1):
             self.write_form(nil, "Invalid email", nil, name, email)
 
