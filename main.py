@@ -5,7 +5,7 @@ sign_in = """
 <head>
 <title> Log- In </title>
 </head>
-<div style = "background-color: silver"
+<div style = "background-color: #53D2FC"
 <body>
 <h1><strong> Sign in</strong><h1>
 <form action="/sign-in" method = "post">
@@ -84,7 +84,7 @@ class MainHandler(webapp2.RequestHandler):
         #if invalid password
         if(name != nil and password != nil and len(password) < 1 and password != vpass or name != nil and email != nil and password != nil and password != vpass and email_check > 0 and email_check2 > 0 and email_check3 < 0):
             self.write_form(nil, nil, "Invalid password", name, email, nil)
-        if(name != nil and password == nil):
+        if(name != nil and (len(s_name) < 1) and password == nil):
             self.write_form(nil,nil, "Password Required", name, email, nil)
 
 
